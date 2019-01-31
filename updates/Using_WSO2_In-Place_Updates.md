@@ -17,9 +17,6 @@ Given below is how to get in-place updates to your product.
 -   Do you have a proxy server/firewall? Then, grant access to the
     endpoints mentioned below.
 
-    ![](images/icons/grey_arrow_down.png){.expand-control-image}Expand
-    to read more...
-
     WUM gets updates by connecting to the `https://api.updates.wso2.com`
     and `https://cdn.updates.wso2.com` endpoints in the WSO2 Update
     service. If your system connects to the Update service through
@@ -32,7 +29,7 @@ Given below is how to get in-place updates to your product.
     ```
 
     If you are behind an NTLM proxy, you can use a third party tool
-    like  **[CNTLM](http://cntlm.sourceforge.net/)**  to do the NTLM
+    like **[CNTLM](http://cntlm.sourceforge.net/)** to do the NTLM
     proxy authentication. See the [CNTLM
     documentation](http://cntlm.sourceforge.net/) for instructions.
 
@@ -55,42 +52,36 @@ Let's begin.
     -   The [channel](Introduction_103318227.html#Introduction-channel) that
         you subscribed to (e.g., full or security) when getting a WSO2
         subscription.
-4.  Note that the tool starts to update your product.
+4.  The tool starts to update your product.
 
-    ![](images/icons/grey_arrow_down.png){.expand-control-image}If the
-    tool lists any conflicts, click to see how to resolve them...
-
-    A conflict is likely to happen when a configuration file or artifact
-    that you have customized has changed in the updates. If the
-    file/artifact has conflicts, the tool does not attempt to merge it.
-    In case you have customized .war or .car files, you need to apply
-    the customizations on top of the updated .war and .car files.
-
-    1.  Go to the locations of the files that have conflicts and note
-        the following files that are created by the tool:  
-        1.  The file that has your customizations (e.g., `test.jag`).
-        2.  The file that was there in the previous update level, before
-            updating (e.g., `test.jag.old`).
-        3.  The file that is in the new update level, after updating
-            (e.g., `test.jag.updated`).
-        4.  The difference of the two files
-            in **ii** and **iii **(e.g., `test.jag.diff`).
-    2.  By looking at the three files (`.old`, `.updated`, and `.diff`),
-        resolve the conflicts and save the resolved file with
-        the **`.final` **extension (e.g., `test.jag.final`). 
-    3.  Run the tool again with the '--continue' flag for the tool to
-        merge the changes in `.final` file with the file which created
-        the conflict.
-
-        ``` java
-        ./update_linux --continue (On Linux)
-        ./update_darwin --continue (On OS X)
-        ```
-
-    4.  Go back to the location of the conflicting file and note that
-        the tool has merged the `.final` file with the file that had
-        your custom configurations and deleted all the other temporary
-        files (i.e., `.old`, `.updated`, `.diff`, and `.final`)
+    > **Note**: A conflict is likely to happen when a configuration file or artifact
+    > that you have customized has changed in the updates. If the
+    > file/artifact has conflicts, the tool does not attempt to merge it.
+    > In case you have customized .war or .car files, you need to apply
+    > the customizations on top of the updated .war and .car files.
+    >
+    > 1.  Go to the locations of the files that have conflicts and note
+    >    the following files that are created by the tool:
+    >       -   The file that has your customizations (e.g., `test.jag`).
+    >       -   The file that was there in the previous update level, before
+    >        updating (e.g., `test.jag.old`).
+    >       -   The file that is in the new update level, after updating
+    >        (e.g., `test.jag.updated`).
+    >       -   The diff of `test.jag.old` and `test.jag.updated` (e.g., `test.jag.diff`).
+    > 2.  By looking at the three files (`.old`, `.updated`, and `.diff`),
+    >    resolve the conflicts and save the resolved file with
+    >    the **`.final`** extension (e.g., `test.jag.final`). 
+    > 3.  Run the tool again with the '--continue' flag for the tool to
+    >    merge the changes in `.final` file with the file which created
+    >    the conflict.  
+    >       ``` java  
+    >       ./update_linux --continue (On Linux)  
+    >       ./update_darwin --continue (On OS X)  
+    >       ```
+    > 4.  Go back to the location of the conflicting file and note that
+    >    the tool has merged the `.final` file with the file that had
+    >    your custom configurations and deleted all the other temporary
+    >    files (i.e., `.old`, `.updated`, `.diff`, and `.final`)
 
 5.  Restart the server.
 
